@@ -10,25 +10,53 @@ This agentic system demonstrates multi-step reasoning, planning, and acting capa
 
 ## Features
 
-- **Multi-Step Agent Workflow**: Perception → Reasoning → Action → Reflection
-- **LLM Provider Flexibility**: Supports OpenAI, Azure, Gemini, Claude, OpenRouter
-- **Async Execution**: Background task processing with status tracking
+- **Multi-Step Agent Workflow**: Perception → Planning → Execution → Validation (LangGraph)
+- **LLM Provider Flexibility**: Supports OpenAI, Anthropic, Google Gemini, Azure OpenAI
+- **Environment-Based Configuration**: Uses LLM_PROVIDER env var for provider selection
+- **LangGraph Orchestration**: Stateful workflow management with conditional routing
 - **RESTful API**: Clean, documented endpoints
 - **Comprehensive Logging**: Full observability of agent decisions
 - **Error Handling**: Graceful failure handling at each step
+- **Proper FastAPI Structure**: Organized with api/, core/, models/, services/ directories
 
 ---
 
 ## Architecture
 
-### Agent Workflow
+### Directory Structure
+
+```
+<usecase_name>/
+├── main.py                      # FastAPI application entry point
+├── api/                         # API layer
+│   ├── __init__.py
+│   └── routes.py               # API routes and endpoints
+├── core/                        # Core agent components
+│   ├── __init__.py
+│   ├── agent_state.py          # LangGraph state model
+│   ├── agents.py                # Individual agent nodes
+│   ├── llm_adapter.py          # LangChain adapter for LLMClientManager
+│   └── config.py               # Configuration management
+├── models/                      # Data models
+│   ├── __init__.py
+│   └── schemas.py              # Pydantic models/schemas
+├── services/                    # Business logic layer
+│   ├── __init__.py
+│   └── agent_service.py        # Agent orchestration service
+├── question_<usecase_name>.md   # Problem description
+├── requirements.txt             # Dependencies (references root)
+├── env.example                  # Environment variables template
+└── README.md                    # This file
+```
+
+### Agent Workflow (LangGraph)
 
 ```mermaid
 graph LR
     A[Input Query] --> B[Perceive]
-    B --> C[Reason]
-    C --> D[Act]
-    D --> E[Reflect]
+    B --> C[Plan]
+    C --> D[Execute]
+    D --> E[Validate]
     E --> F[Output Result]
 ```
 
@@ -36,17 +64,18 @@ graph LR
 
 ```mermaid
 graph TD
-    A[FastAPI] --> B[Router]
-    B --> C[Agent Orchestrator]
-    C --> D[Perception]
-    C --> E[Reasoning]
-    C --> F[Action]
-    C --> G[Reflection]
-    D --> H[LLMClientManager]
-    E --> H
-    F --> H
-    G --> H
-    H --> I[LLM Providers]
+    A[FastAPI] --> B[API Routes]
+    B --> C[Agent Service]
+    C --> D[LangGraph Workflow]
+    D --> E[Perception Agent]
+    D --> F[Planning Agent]
+    D --> G[Execution Agent]
+    D --> H[Validation Agent]
+    E --> I[LangChain LLM]
+    F --> I
+    G --> I
+    H --> I
+    I --> J[LLM Providers]
 ```
 
 ---
@@ -74,21 +103,21 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 3. **Install dependencies**
 ```bash
+# Install from scenario-specific requirements (references root)
 pip install -r requirements.txt
 ```
 
 4. **Configure environment variables**
 ```bash
-# Create .env file
-cp .env.example .env
+# Create .env file (or use root .env)
+cp env.example .env
 
-# Edit .env and add your API keys
+# Edit .env and set LLM_PROVIDER and corresponding API key
+LLM_PROVIDER=openai  # Options: openai, anthropic, gemini, claude, azure
 OPENAI_API_KEY=your_openai_key
-AZURE_OPENAI_API_KEY=your_azure_key
-AZURE_OPENAI_ENDPOINT=your_azure_endpoint
-GOOGLE_API_KEY=your_gemini_key
-ANTHROPIC_API_KEY=your_claude_key
-OPENROUTER_API_KEY=your_openrouter_key
+# OR
+ANTHROPIC_API_KEY=your_anthropic_key
+# etc.
 ```
 
 ---

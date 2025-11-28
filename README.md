@@ -140,13 +140,40 @@ response = manager.generate(
 
 ## 📚 Problem Catalog
 
-| Problem | Category | Difficulty | Time | Description |
-|---------|----------|------------|------|-------------|
-| [Coming Soon] | Basic Python | Simple | 15 min | One-liner solutions |
-| [Coming Soon] | Advanced Python | Medium | 25 min | Algorithm implementation |
-| [Coming Soon] | MLOps | Advanced | 35 min | Model training pipeline |
-| [Coming Soon] | GenAI | Medium | 30 min | LLM-powered solution |
-| [Coming Soon] | Agentic | Advanced | 40 min | Multi-step agent system |
+### Advanced Python
+
+| Problem | Difficulty | Time | Description |
+|---------|------------|------|-------------|
+| [Binary Search](app/python/binary_search/) | Medium-Advanced | 25-30 min | Multiple binary search variations (standard, first/last occurrence, rotated array, peak element) |
+| [Quick Sort](app/python/quick_sort/) | Medium-Advanced | 25-30 min | Quick sort implementations (standard, randomized, three-way partition, custom comparator, Kth smallest) |
+| [Web Scraper](app/python/web_scraper/) | Advanced | 30-35 min | Cryptocurrency price data collection from APIs and web scraping with error handling and data validation |
+| [Recommendation System](app/python/recommendation_system/) | Advanced | 35-40 min | Movie recommendation engine with content-based and collaborative filtering approaches |
+
+### Basic Python
+
+| Problem | Difficulty | Time | Description |
+|---------|------------|------|-------------|
+| [Python One-Liners](app/basic/python_one_liners.py) | Simple | 15-20 min | 264 one-liner solutions for common programming tasks |
+
+### GenAI
+
+| Problem | Difficulty | Time | Description |
+|---------|------------|------|-------------|
+| [Simple Code Generator](app/genai/simple_code_generator/) | Medium | 20-25 min | LLM-powered code generation for Python and JavaScript |
+| [Creative Writer](app/genai/creative_writer/) | Medium | 20-25 min | Creative content generation (stories, poems, articles) with style customization |
+| [Data Analyzer](app/genai/data_analyzer/) | Medium | 25-30 min | Natural language data analysis and insights generation |
+| [Data Augmentation](app/genai/data_augmentation/) | Medium | 20-25 min | Product description variant generation using GenAI |
+| [Entity Extraction](app/genai/entity_extraction/) | Medium | 20-25 min | Person names and dates extraction using few-shot prompting |
+| [Image Captioning](app/genai/image_captioning/) | Medium | 25-30 min | Two-stage image captioning (factual + creative) using vision models |
+| [QA System](app/genai/qa_system/) | Medium | 25-30 min | Question answering system with confidence scoring and citations |
+| [Sentiment Analysis](app/genai/sentiment_analysis/) | Medium | 25-30 min | Text sentiment and emotion detection with reasoning |
+| [Text Summarization](app/genai/text_summarization/) | Medium | 25-30 min | Extractive and abstractive summarization with various formats |
+
+### Agentic Systems
+
+| Problem | Difficulty | Time | Description |
+|---------|------------|------|-------------|
+| [Code Generator](app/agentic/code_generator/) | Advanced | 35-40 min | Multi-agent code generation system using LangGraph with perception, planning, generation, validation, and refinement |
 
 ---
 
@@ -335,26 +362,15 @@ git push origin feat/problem-name
 
 We welcome contributions! Please see [CONTRIBUTING.md](.github/CONTRIBUTING.md) for guidelines.
 
-**Quick checklist:**
-- [ ] Problem statement is clear
-- [ ] Solution has complexity analysis
-- [ ] Code passes linting (`black`, `flake8`, `pylint`)
-- [ ] Examples are included
-- [ ] Documentation is updated
-- [ ] Time limit is 15-45 minutes
-
 ---
 
 ## 📜 License
 
-[Your License Here]
+This project is licensed under the terms specified in the [LICENSE](LICENSE) file.
 
 ---
 
 ## 📞 Contact
-
-**Author:** chronosnehal  
-**Repository:** [GitHub URL]
 
 For questions or issues, please open an issue in the repository.
 

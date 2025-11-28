@@ -1,4 +1,4 @@
-# Agentic System - Dependencies
+# AI Code Generator - Dependencies
 # This file references the root requirements.txt to ensure dependency consistency
 # Install: pip install -r requirements.txt
 
@@ -7,12 +7,12 @@
 # ============================================================================
 # All core dependencies are inherited from the root requirements.txt
 # This ensures version consistency across the entire ThinkCraft repository
--r ../../../../requirements.txt
+-r ../../../requirements.txt
 
 # ============================================================================
 # Scenario-Specific Dependencies (if any)
 # ============================================================================
-# Add any use-case-specific dependencies here that are not in root
+# Add any code_generator-specific dependencies here that are not in root
 # Currently, all dependencies are covered by root requirements.txt
 
 # ============================================================================
@@ -24,3 +24,4 @@
 #    a. If shared across projects: Add to root requirements.in and regenerate
 #    b. If specific to this project: Add below this comment
 # 4. Run: pip install -r requirements.txt from this directory
+# 5. To regenerate root requirements.txt: pip-compile requirements.in

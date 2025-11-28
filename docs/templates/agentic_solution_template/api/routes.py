@@ -6,13 +6,13 @@ This module defines all API endpoints for the agentic system.
 """
 
 from fastapi import APIRouter, HTTPException, BackgroundTasks
-from models import (
+from ..models.schemas import (
     InputData,
     OutputData,
     AgentStatus,
     ErrorResponse
 )
-from solution import AgentOrchestrator
+from ..services.agent_service import AgentOrchestrator
 from typing import Dict, Any
 import logging
 
@@ -21,8 +21,22 @@ logger = logging.getLogger(__name__)
 # Create router
 router = APIRouter()
 
+# Factory function for orchestrator (uses LLM_PROVIDER from env)
+def get_orchestrator() -> AgentOrchestrator:
+    """
+    Factory function to create agent orchestrator.
+    
+    Uses LLM_PROVIDER from environment to select provider.
+    Falls back to OpenAI if not specified.
+    
+    Returns:
+        AgentOrchestrator instance
+    """
+    return AgentOrchestrator(provider=None, model=None, temperature=0.7)
+
+
 # Global orchestrator instance (consider using dependency injection in production)
-orchestrator = AgentOrchestrator()
+orchestrator = get_orchestrator()
 
 
 @router.post("/execute/", response_model=OutputData)

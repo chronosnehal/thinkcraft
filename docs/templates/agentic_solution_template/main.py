@@ -13,7 +13,7 @@ Date: [YYYY-MM-DD]
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from router import router
+from api.routes import router
 import logging
 
 # Configure logging

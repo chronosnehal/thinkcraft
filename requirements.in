@@ -1,27 +1,84 @@
-# Core dependencies for LLM clients
-openai>=1.0.0
-anthropic>=0.3.0
-google-generativeai>=0.3.0
+# ThinkCraft - Core Dependencies
+# Use pip-compile to generate requirements.txt: pip-compile requirements.in
 
-# Environment variable management
-python-dotenv>=1.0.0
+# ============================================================================
+# Core LLM Provider SDKs (Required)
+# ============================================================================
+openai>=1.6.0              # OpenAI GPT models
+anthropic>=0.8.0           # Anthropic Claude
+google-generativeai>=0.3.2 # Google Gemini
+requests>=2.31.0           # HTTP client for OpenRouter and custom APIs
 
-# Web scraping and HTTP requests
-requests>=2.31.0
-beautifulsoup4>=4.12.0
+# ============================================================================
+# Environment & Configuration (Required)
+# ============================================================================
+python-dotenv>=1.0.0       # Environment variable management
 
-# Data analysis and manipulation
-pandas>=2.0.0
-numpy>=1.24.0
+# ============================================================================
+# FastAPI & Web Framework (Required for Agentic Systems)
+# ============================================================================
+fastapi>=0.109.0           # Web framework for agentic APIs
+uvicorn[standard]>=0.27.0  # ASGI server
+pydantic>=2.5.0            # Data validation
 
-# Machine learning and scientific computing
-scikit-learn>=1.3.0
+# ============================================================================
+# Development Tools (Required)
+# ============================================================================
+pip-tools>=7.3.0           # Dependency management (pip-compile)
 
-# Image processing and computer vision
-transformers>=4.35.0
-torch>=2.0.0
-torchvision>=0.15.0
-pillow>=10.0.0
+# Code formatting
+black>=23.12.0             # Code formatter
 
-# Development and utility packages
-pip-tools>=7.0.0
+# Linting
+flake8>=7.0.0              # Style guide enforcement
+pylint>=3.0.0              # Code analysis
+
+# Type checking
+mypy>=1.8.0                # Static type checker
+
+# Testing
+pytest>=7.4.0              # Testing framework
+pytest-asyncio>=0.23.0     # Async test support
+httpx>=0.25.0              # HTTP client for testing FastAPI endpoints
+
+# ============================================================================
+# Optional: Data Science & MLOps (Uncomment if needed)
+# ============================================================================
+# numpy>=1.26.0            # Numerical computing
+# pandas>=2.1.0            # Data manipulation
+# scikit-learn>=1.4.0      # Machine learning
+# matplotlib>=3.8.0        # Plotting
+# seaborn>=0.13.0          # Statistical visualization
+
+# ============================================================================
+# Optional: Web Scraping (Uncomment if needed)
+# ============================================================================
+# beautifulsoup4>=4.12.0   # HTML/XML parsing
+# lxml>=5.0.0              # XML/HTML parser
+
+# ============================================================================
+# Optional: Deep Learning (Uncomment if needed)
+# ============================================================================
+# torch>=2.1.0             # PyTorch
+# torchvision>=0.16.0      # Computer vision
+# transformers>=4.36.0     # Hugging Face transformers
+# pillow>=10.1.0           # Image processing
+
+# ============================================================================
+# Advanced Agentic Frameworks (Required for Agentic Systems)
+# ============================================================================
+langchain>=0.1.0           # LangChain framework
+langchain-core>=0.1.0      # LangChain core
+langchain-openai>=0.0.2    # OpenAI integration for LangChain
+langchain-anthropic>=0.1.0 # Anthropic integration for LangChain
+langchain-google-genai>=0.0.5  # Google Gemini integration for LangChain
+langgraph>=0.0.20          # LangGraph for agent workflows
+langsmith>=0.0.60          # LLM observability (optional but recommended)
+
+# ============================================================================
+# Notes
+# ============================================================================
+# 1. Run `pip-compile requirements.in` to generate requirements.txt
+# 2. Run `pip-compile --upgrade requirements.in` to update all packages
+# 3. Uncomment optional dependencies only when needed for specific problems
+# 4. Keep this file minimal - only include what's actually used
