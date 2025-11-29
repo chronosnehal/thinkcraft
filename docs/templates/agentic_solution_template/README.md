@@ -44,7 +44,6 @@ This agentic system demonstrates multi-step reasoning, planning, and acting capa
 │   ├── __init__.py
 │   └── agent_service.py        # Agent orchestration service
 ├── question_<usecase_name>.md   # Problem description
-├── requirements.txt             # Dependencies (references root)
 ├── env.example                  # Environment variables template
 └── README.md                    # This file
 ```
@@ -83,7 +82,7 @@ graph TD
 ## Installation
 
 ### Prerequisites
-- Python 3.9+
+- Python 3.12 (required)
 - pip or conda
 - API keys for LLM providers
 
@@ -92,18 +91,18 @@ graph TD
 1. **Clone the repository**
 ```bash
 git clone <repository-url>
-cd app/agentic/<usecase_name>
+cd thinkcraft
 ```
 
-2. **Create virtual environment**
+2. **Create virtual environment (from repository root)**
 ```bash
-python -m venv venv
+python3.12 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-3. **Install dependencies**
+3. **Install dependencies (from repository root)**
 ```bash
-# Install from scenario-specific requirements (references root)
+# All dependencies are managed via root requirements.in
 pip install -r requirements.txt
 ```
 

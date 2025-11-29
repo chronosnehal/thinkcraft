@@ -236,8 +236,7 @@ graph TD
 ├── solution.py       # Agent orchestration logic
 ├── models.py         # Pydantic models
 ├── question_<usecase_name>.md
-├── README.md
-└── requirements.txt
+└── README.md
 ```
 
 ### Required Components

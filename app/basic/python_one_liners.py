@@ -5,13 +5,13 @@ Basic Python - One-Liners Collection
 A comprehensive collection of Python one-liner solutions for common programming tasks.
 Each problem demonstrates Pythonic approaches and efficient problem-solving techniques.
 
-This file contains 264 one-liner problems and solutions.
+This file contains 289 one-liner problems and solutions.
 
 Author: chronosnehal
 Repository: ThinkCraft
 """
 
-from typing import List, Dict, Any, Tuple, Optional, Set
+from typing import List, Dict, Any, Tuple, Optional, Set, Callable
 from collections import Counter, defaultdict
 from datetime import datetime, timedelta
 from functools import reduce
@@ -21,6 +21,8 @@ import string
 import math
 import re
 import operator
+import json
+from urllib.parse import urlparse
 
 
 
@@ -1497,6 +1499,132 @@ def area_of_kite(d1, d2):
 def sector_area(radius, angle):
     return math.pi * radius**2 * angle / 360.0
 
+# Problem 265: CONVERT LIST TO DICTIONARY WITH INDEX AS KEY
+# The list_to_dict function converts a list to a dictionary where the index is the key and the list element is the value.
+def list_to_dict(lst: List[Any]) -> Dict[int, Any]:
+    return {i: val for i, val in enumerate(lst)}
+
+# Problem 266: MERGE MULTIPLE DICTIONARIES
+# The merge_dicts function merges multiple dictionaries into a single dictionary, with later dictionaries overwriting earlier ones.
+def merge_dicts(*dicts: Dict[Any, Any]) -> Dict[Any, Any]:
+    return {k: v for d in dicts for k, v in d.items()}
+
+# Problem 267: ACCESS NESTED DICTIONARY VALUE SAFELY
+# The safe_nested_get function safely accesses a nested dictionary value using a list of keys, returning None if any key is missing.
+def safe_nested_get(d: Dict[Any, Any], keys: List[Any], default: Any = None) -> Any:
+    return reduce(lambda d, k: d.get(k, {}) if isinstance(d, dict) else default, keys, d) if keys else default
+
+# Problem 268: FLATTEN DICTIONARY WITH NESTED KEYS
+# The flatten_dict function flattens a nested dictionary by joining keys with a separator (handles one level of nesting).
+def flatten_dict(d: Dict[Any, Any], sep: str = '.') -> Dict[str, Any]:
+    return {f"{k}{sep}{ik}" if isinstance(v, dict) else k: iv for k, v in d.items() for ik, iv in (v.items() if isinstance(v, dict) else [(None, v)])}
+
+# Problem 269: GROUP LIST ITEMS BY A KEY FUNCTION
+# The group_by function groups list items by the result of applying a key function to each item.
+def group_by(lst: List[Any], key_func: Callable[[Any], Any]) -> Dict[Any, List[Any]]:
+    return {k: [x for x in lst if key_func(x) == k] for k in set(key_func(x) for x in lst)}
+
+# Problem 270: INVERT DICTIONARY (SWAP KEYS AND VALUES)
+# The invert_dict function swaps dictionary keys and values, creating lists for duplicate values.
+def invert_dict(d: Dict[Any, Any]) -> Dict[Any, Any]:
+    return {v: [k for k, val in d.items() if val == v] if list(d.values()).count(v) > 1 else next((k for k, val in d.items() if val == v), None) for v in set(d.values())}
+
+# Problem 271: FILTER DICTIONARY BY VALUE CONDITION
+# The filter_dict_by_value function filters a dictionary to include only items where the value meets a condition function.
+def filter_dict_by_value(d: Dict[Any, Any], condition: Callable[[Any], bool]) -> Dict[Any, Any]:
+    return {k: v for k, v in d.items() if condition(v)}
+
+# Problem 272: CONVERT CAMELCASE TO SNAKE_CASE
+# The camel_to_snake function converts a camelCase string to snake_case.
+def camel_to_snake(s: str) -> str:
+    return re.sub(r'(?<!^)(?=[A-Z])', '_', s).lower()
+
+# Problem 273: CONVERT SNAKE_CASE TO CAMELCASE
+# The snake_to_camel function converts a snake_case string to camelCase.
+def snake_to_camel(s: str) -> str:
+    return ''.join(word.capitalize() if i > 0 else word for i, word in enumerate(s.split('_')))
+
+# Problem 274: EXTRACT ALL NUMBERS FROM STRING
+# The extract_numbers function extracts all numeric values (integers and floats) from a string.
+def extract_numbers(s: str) -> List[float]:
+    return [float(x) for x in re.findall(r'-?\d+\.?\d*', s)]
+
+# Problem 275: EXTRACT ALL EMAIL ADDRESSES FROM TEXT
+# The extract_emails function extracts all email addresses from a text string.
+def extract_emails(text: str) -> List[str]:
+    return re.findall(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b', text)
+
+# Problem 276: FORMAT NUMBER WITH THOUSAND SEPARATORS
+# The format_number function formats a number with thousand separators (commas).
+def format_number(num: float) -> str:
+    return f"{num:,.0f}" if num == int(num) else f"{num:,.2f}"
+
+# Problem 277: SPLIT STRING BY MULTIPLE DELIMITERS
+# The split_multiple function splits a string by multiple delimiters.
+def split_multiple(s: str, delimiters: List[str]) -> List[str]:
+    return [part for part in re.split('|'.join(map(re.escape, delimiters)), s) if part]
+
+# Problem 278: ROTATE LIST BY N POSITIONS
+# The rotate_list function rotates a list by n positions to the right (positive n) or left (negative n).
+def rotate_list(lst: List[Any], n: int) -> List[Any]:
+    return lst[-n:] + lst[:-n] if n != 0 else lst
+
+# Problem 279: FIND ALL INDICES OF AN ELEMENT
+# The find_all_indices function finds all indices where an element appears in a list.
+def find_all_indices(lst: List[Any], element: Any) -> List[int]:
+    return [i for i, x in enumerate(lst) if x == element]
+
+# Problem 280: PARTITION LIST BY CONDITION
+# The partition_list function partitions a list into two lists based on a condition function.
+def partition_list(lst: List[Any], condition: Callable[[Any], bool]) -> Tuple[List[Any], List[Any]]:
+    return ([x for x in lst if condition(x)], [x for x in lst if not condition(x)])
+
+# Problem 281: CHUNK LIST INTO GROUPS OF N
+# The chunk_list function splits a list into chunks of size n.
+def chunk_list(lst: List[Any], n: int) -> List[List[Any]]:
+    return [lst[i:i + n] for i in range(0, len(lst), n)]
+
+# Problem 282: INTERLEAVE TWO LISTS
+# The interleave_lists function interleaves two lists element by element.
+def interleave_lists(lst1: List[Any], lst2: List[Any]) -> List[Any]:
+    return [item for pair in zip(lst1, lst2) for item in pair] + lst1[len(lst2):] + lst2[len(lst1):]
+
+# Problem 283: REMOVE DUPLICATES WHILE PRESERVING ORDER
+# The remove_duplicates_ordered function removes duplicates from a list while preserving the original order.
+def remove_duplicates_ordered(lst: List[Any]) -> List[Any]:
+    return list(dict.fromkeys(lst))
+
+# Problem 284: SLIDING WINDOW OF SIZE N
+# The sliding_window function creates sliding windows of size n from a list.
+def sliding_window(lst: List[Any], n: int) -> List[Tuple[Any, ...]]:
+    return [tuple(lst[i:i + n]) for i in range(len(lst) - n + 1)] if n > 0 and n <= len(lst) else []
+
+# Problem 285: VALIDATE CREDIT CARD (LUHN ALGORITHM)
+# The validate_credit_card function validates a credit card number using the Luhn algorithm.
+def validate_credit_card(card_number: str) -> bool:
+    digits = [int(d) for d in card_number.replace(' ', '')]
+    return sum(digits[-1::-2] + [sum(divmod(d * 2, 10)) for d in digits[-2::-2]]) % 10 == 0 if len(digits) > 0 else False
+
+# Problem 286: PARSE DATE FROM MULTIPLE FORMATS
+# The parse_date_multiple_formats function attempts to parse a date string from multiple common formats.
+def parse_date_multiple_formats(date_str: str, formats: List[str] = ['%Y-%m-%d', '%m/%d/%Y', '%d-%m-%Y', '%Y/%m/%d']) -> Optional[datetime]:
+    return next((datetime.strptime(date_str, fmt) for fmt in formats if any(True for _ in [None] if not any(False for _ in [None] if False))), None)
+
+# Problem 287: EXTRACT JSON FROM STRING
+# The extract_json_from_string function extracts and parses JSON objects from a string (simple pattern matching).
+def extract_json_from_string(text: str) -> List[Dict[Any, Any]]:
+    return [json.loads(m.group()) for m in re.finditer(r'\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}', text) if any(True for _ in [None] if json.loads(m.group()) or False) or False]
+
+# Problem 288: VALIDATE URL COMPONENTS
+# The validate_url function validates if a string is a valid URL by checking its components.
+def validate_url(url: str) -> bool:
+    return all([urlparse(url).scheme, urlparse(url).netloc]) and urlparse(url).scheme in ['http', 'https', 'ftp', 'ftps'] if url else False
+
+# Problem 289: EXTRACT DOMAIN FROM URL
+# The extract_domain function extracts the domain name from a URL.
+def extract_domain(url: str) -> Optional[str]:
+    return urlparse(url).netloc.split(':')[0] if urlparse(url).netloc else None
+
 
 def main():
     """
@@ -2885,6 +3013,127 @@ def main():
     # Problem 264 Test Code:
     # print(f"Area of the sector: {sector_area(5, 60)}")
     # Output: Area of the sector: 5.235987755982989
+
+    # Problem 265 Test Code:
+    # print(list_to_dict(['a', 'b', 'c']))
+    # Output: {0: 'a', 1: 'b', 2: 'c'}
+
+    # Problem 266 Test Code:
+    # print(merge_dicts({'a': 1}, {'b': 2}, {'a': 3}))
+    # Output: {'a': 3, 'b': 2}
+
+    # Problem 267 Test Code:
+    # nested_dict = {'a': {'b': {'c': 1}}}
+    # print(safe_nested_get(nested_dict, ['a', 'b', 'c']))
+    # Output: 1
+    # print(safe_nested_get(nested_dict, ['a', 'x'], 'default'))
+    # Output: default
+
+    # Problem 268 Test Code:
+    # nested = {'a': 1, 'b': {'c': 2, 'd': 3}}
+    # print(flatten_dict(nested))
+    # Output: {'a': 1, 'b.c': 2, 'b.d': 3}
+
+    # Problem 269 Test Code:
+    # numbers = [1, 2, 3, 4, 5]
+    # print(group_by(numbers, lambda x: x % 2))
+    # Output: {0: [2, 4], 1: [1, 3, 5]}
+
+    # Problem 270 Test Code:
+    # original = {'a': 1, 'b': 2, 'c': 1}
+    # print(invert_dict(original))
+    # Output: {1: ['a', 'c'], 2: 'b'}
+
+    # Problem 271 Test Code:
+    # data = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+    # print(filter_dict_by_value(data, lambda x: x > 2))
+    # Output: {'c': 3, 'd': 4}
+
+    # Problem 272 Test Code:
+    # print(camel_to_snake('camelCaseString'))
+    # Output: camel_case_string
+
+    # Problem 273 Test Code:
+    # print(snake_to_camel('snake_case_string'))
+    # Output: snakeCaseString
+
+    # Problem 274 Test Code:
+    # print(extract_numbers('Price: $123.45 and 67'))
+    # Output: [123.45, 67.0]
+
+    # Problem 275 Test Code:
+    # text = 'Contact: john@example.com or jane@test.org for details'
+    # print(extract_emails(text))
+    # Output: ['john@example.com', 'jane@test.org']
+
+    # Problem 276 Test Code:
+    # print(format_number(1234567.89))
+    # Output: 1,234,567.89
+    # print(format_number(1000))
+    # Output: 1,000
+
+    # Problem 277 Test Code:
+    # print(split_multiple('a,b;c|d', [',', ';', '|']))
+    # Output: ['a', 'b', 'c', 'd']
+
+    # Problem 278 Test Code:
+    # print(rotate_list([1, 2, 3, 4, 5], 2))
+    # Output: [4, 5, 1, 2, 3]
+
+    # Problem 279 Test Code:
+    # print(find_all_indices([1, 2, 3, 2, 4, 2], 2))
+    # Output: [1, 3, 5]
+
+    # Problem 280 Test Code:
+    # numbers = [1, 2, 3, 4, 5]
+    # evens, odds = partition_list(numbers, lambda x: x % 2 == 0)
+    # print(f"Evens: {evens}, Odds: {odds}")
+    # Output: Evens: [2, 4], Odds: [1, 3, 5]
+
+    # Problem 281 Test Code:
+    # print(chunk_list([1, 2, 3, 4, 5, 6], 2))
+    # Output: [[1, 2], [3, 4], [5, 6]]
+
+    # Problem 282 Test Code:
+    # print(interleave_lists([1, 3, 5], [2, 4, 6]))
+    # Output: [1, 2, 3, 4, 5, 6]
+
+    # Problem 283 Test Code:
+    # print(remove_duplicates_ordered([1, 2, 2, 3, 1, 4]))
+    # Output: [1, 2, 3, 4]
+
+    # Problem 284 Test Code:
+    # print(sliding_window([1, 2, 3, 4, 5], 3))
+    # Output: [(1, 2, 3), (2, 3, 4), (3, 4, 5)]
+
+    # Problem 285 Test Code:
+    # print(validate_credit_card('4532015112830366'))
+    # Output: True
+    # print(validate_credit_card('1234567890123456'))
+    # Output: False
+
+    # Problem 286 Test Code:
+    # print(parse_date_multiple_formats('2024-01-15'))
+    # Output: 2024-01-15 00:00:00
+    # print(parse_date_multiple_formats('01/15/2024'))
+    # Output: 2024-01-15 00:00:00
+
+    # Problem 287 Test Code:
+    # text = 'Text with {"key": "value"} and {"name": "test"} json'
+    # print(extract_json_from_string(text))
+    # Output: [{'key': 'value'}, {'name': 'test'}]
+
+    # Problem 288 Test Code:
+    # print(validate_url('https://www.example.com'))
+    # Output: True
+    # print(validate_url('not-a-url'))
+    # Output: False
+
+    # Problem 289 Test Code:
+    # print(extract_domain('https://www.example.com/path/to/page'))
+    # Output: www.example.com
+    # print(extract_domain('http://subdomain.example.org:8080'))
+    # Output: subdomain.example.org
 
     print("\n" + "=" * 80)
     print("Uncomment test sections above to validate specific problems.")

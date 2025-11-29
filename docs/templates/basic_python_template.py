@@ -1,412 +1,172 @@
 #!/usr/bin/env python3
 """
-Basic Python - One-Liners and Pythonic Solutions
+Basic Python - One-Liners Collection
 
-This file contains powerful one-liner solutions and Pythonic approaches
-for common programming tasks.
+A comprehensive collection of Python one-liner solutions for common programming tasks.
+Each problem demonstrates Pythonic approaches and efficient problem-solving techniques.
+
+This file contains Python one-liner problems and solutions.
 
 Author: chronosnehal
+Repository: ThinkCraft
 """
 
-from typing import List, Dict, Any, Set, Tuple
+from typing import List, Dict, Any, Tuple, Optional, Set, Callable
 from collections import Counter, defaultdict
-from itertools import chain, combinations, groupby
+from datetime import datetime, timedelta
 from functools import reduce
+from itertools import chain, combinations
+import random
+import string
+import math
+import re
 import operator
+import json
+from urllib.parse import urlparse
 
 
 # ============================================================================
-# SECTION: [Problem Category - e.g., List Operations]
+# ONE-LINER PROBLEM FORMAT
+# ============================================================================
+# Each problem follows this exact format:
+#
+# # Problem X: PROBLEM TITLE IN UPPERCASE
+# # The function_name function description of what it does.
+# def function_name(params: Type) -> ReturnType:
+#     return one_liner_solution
+#
 # ============================================================================
 
-def problem_name_descriptive(data: List[int]) -> Any:
-    """
-    [Brief description of what this one-liner accomplishes]
-    
-    Args:
-        data: [Description]
-    
-    Returns:
-        [Description]
-    
-    Time Complexity: O(?)
-    Space Complexity: O(?)
-    
-    Examples:
-        >>> problem_name_descriptive([1, 2, 3, 4, 5])
-        [expected output]
-    """
-    # One-liner solution
-    return [x * 2 for x in data if x % 2 == 0]
+
+# Problem 1: EXAMPLE - CONVERT LIST TO DICTIONARY
+# The list_to_dict function converts a list to a dictionary where the index is the key and the list element is the value.
+def list_to_dict(lst: List[Any]) -> Dict[int, Any]:
+    return {i: val for i, val in enumerate(lst)}
 
 
-def find_duplicates(lst: List[Any]) -> List[Any]:
-    """
-    Find all duplicate elements in a list using one-liner.
-    
-    Args:
-        lst: Input list
-    
-    Returns:
-        List of duplicate elements
-    
-    Time Complexity: O(n)
-    Space Complexity: O(n)
-    
-    Examples:
-        >>> find_duplicates([1, 2, 3, 2, 4, 3, 5])
-        [2, 3]
-    """
-    return [item for item, count in Counter(lst).items() if count > 1]
-
-
-def flatten_list(nested: List[List[Any]]) -> List[Any]:
-    """
-    Flatten a nested list using one-liner.
-    
-    Args:
-        nested: Nested list structure
-    
-    Returns:
-        Flattened list
-    
-    Time Complexity: O(n*m) where n is outer list, m is avg inner list size
-    Space Complexity: O(n*m)
-    
-    Examples:
-        >>> flatten_list([[1, 2], [3, 4], [5]])
-        [1, 2, 3, 4, 5]
-    """
-    return list(chain.from_iterable(nested))
-
-
-def remove_duplicates_preserve_order(lst: List[Any]) -> List[Any]:
-    """
-    Remove duplicates while preserving order using dict.
-    
-    Args:
-        lst: Input list
-    
-    Returns:
-        List without duplicates
-    
-    Time Complexity: O(n)
-    Space Complexity: O(n)
-    
-    Examples:
-        >>> remove_duplicates_preserve_order([1, 2, 3, 2, 4, 1])
-        [1, 2, 3, 4]
-    """
-    return list(dict.fromkeys(lst))
-
-
-def transpose_matrix(matrix: List[List[Any]]) -> List[Tuple[Any, ...]]:
-    """
-    Transpose a matrix using zip.
-    
-    Args:
-        matrix: 2D matrix
-    
-    Returns:
-        Transposed matrix
-    
-    Time Complexity: O(n*m)
-    Space Complexity: O(n*m)
-    
-    Examples:
-        >>> transpose_matrix([[1, 2, 3], [4, 5, 6]])
-        [(1, 4), (2, 5), (3, 6)]
-    """
-    return list(zip(*matrix))
-
-
-def group_by_key(items: List[Dict[str, Any]], key: str) -> Dict[Any, List[Dict]]:
-    """
-    Group list of dicts by a specific key.
-    
-    Args:
-        items: List of dictionaries
-        key: Key to group by
-    
-    Returns:
-        Dictionary with grouped items
-    
-    Time Complexity: O(n)
-    Space Complexity: O(n)
-    
-    Examples:
-        >>> items = [{'type': 'A', 'val': 1}, {'type': 'B', 'val': 2}, {'type': 'A', 'val': 3}]
-        >>> group_by_key(items, 'type')
-        {'A': [{'type': 'A', 'val': 1}, {'type': 'A', 'val': 3}], 'B': [{'type': 'B', 'val': 2}]}
-    """
-    result = defaultdict(list)
-    [result[item[key]].append(item) for item in items]
-    return dict(result)
-
-
-def merge_dicts(*dicts: Dict) -> Dict:
-    """
-    Merge multiple dictionaries (Python 3.9+ style).
-    
-    Args:
-        *dicts: Variable number of dictionaries
-    
-    Returns:
-        Merged dictionary
-    
-    Time Complexity: O(n) where n is total keys
-    Space Complexity: O(n)
-    
-    Examples:
-        >>> merge_dicts({'a': 1}, {'b': 2}, {'c': 3})
-        {'a': 1, 'b': 2, 'c': 3}
-    """
+# Problem 2: EXAMPLE - MERGE MULTIPLE DICTIONARIES
+# The merge_dicts function merges multiple dictionaries into a single dictionary, with later dictionaries overwriting earlier ones.
+def merge_dicts(*dicts: Dict[Any, Any]) -> Dict[Any, Any]:
     return {k: v for d in dicts for k, v in d.items()}
 
 
-def filter_dict(d: Dict[str, Any], keys: Set[str]) -> Dict[str, Any]:
-    """
-    Filter dictionary by keys.
-    
-    Args:
-        d: Input dictionary
-        keys: Keys to keep
-    
-    Returns:
-        Filtered dictionary
-    
-    Time Complexity: O(n)
-    Space Complexity: O(n)
-    
-    Examples:
-        >>> filter_dict({'a': 1, 'b': 2, 'c': 3}, {'a', 'c'})
-        {'a': 1, 'c': 3}
-    """
-    return {k: v for k, v in d.items() if k in keys}
+# Problem 3: EXAMPLE - CONVERT CAMELCASE TO SNAKE_CASE
+# The camel_to_snake function converts a camelCase string to snake_case.
+def camel_to_snake(s: str) -> str:
+    return re.sub(r'(?<!^)(?=[A-Z])', '_', s).lower()
 
 
-def invert_dict(d: Dict[Any, Any]) -> Dict[Any, Any]:
-    """
-    Invert dictionary (swap keys and values).
-    
-    Args:
-        d: Input dictionary
-    
-    Returns:
-        Inverted dictionary
-    
-    Time Complexity: O(n)
-    Space Complexity: O(n)
-    
-    Examples:
-        >>> invert_dict({'a': 1, 'b': 2, 'c': 3})
-        {1: 'a', 2: 'b', 3: 'c'}
-    """
-    return {v: k for k, v in d.items()}
+# Problem 4: EXAMPLE - ROTATE LIST BY N POSITIONS
+# The rotate_list function rotates a list by n positions to the right (positive n) or left (negative n).
+def rotate_list(lst: List[Any], n: int) -> List[Any]:
+    return lst[-n:] + lst[:-n] if n != 0 else lst
 
 
-def most_common_element(lst: List[Any]) -> Any:
-    """
-    Find most common element in list.
-    
-    Args:
-        lst: Input list
-    
-    Returns:
-        Most common element
-    
-    Time Complexity: O(n)
-    Space Complexity: O(n)
-    
-    Examples:
-        >>> most_common_element([1, 2, 3, 2, 2, 4])
-        2
-    """
-    return Counter(lst).most_common(1)[0][0]
+# Problem 5: EXAMPLE - VALIDATE CREDIT CARD (LUHN ALGORITHM)
+# The validate_credit_card function validates a credit card number using the Luhn algorithm.
+def validate_credit_card(card_number: str) -> bool:
+    digits = [int(d) for d in card_number.replace(' ', '')]
+    return sum(digits[-1::-2] + [sum(divmod(d * 2, 10)) for d in digits[-2::-2]]) % 10 == 0 if len(digits) > 0 else False
 
 
-def all_subsets(lst: List[Any]) -> List[Tuple[Any, ...]]:
-    """
-    Generate all subsets (power set) of a list.
-    
-    Args:
-        lst: Input list
-    
-    Returns:
-        List of all subsets
-    
-    Time Complexity: O(2^n)
-    Space Complexity: O(2^n)
-    
-    Examples:
-        >>> all_subsets([1, 2, 3])
-        [(), (1,), (2,), (3,), (1, 2), (1, 3), (2, 3), (1, 2, 3)]
-    """
-    return list(chain.from_iterable(combinations(lst, r) for r in range(len(lst) + 1)))
-
-
-def product_except_self(nums: List[int]) -> List[int]:
-    """
-    Calculate product of all elements except self using reduce.
-    
-    Args:
-        nums: List of numbers
-    
-    Returns:
-        List of products
-    
-    Time Complexity: O(n^2)
-    Space Complexity: O(n)
-    
-    Examples:
-        >>> product_except_self([1, 2, 3, 4])
-        [24, 12, 8, 6]
-    """
-    return [reduce(operator.mul, nums[:i] + nums[i+1:], 1) for i in range(len(nums))]
-
-
-def chunk_list(lst: List[Any], chunk_size: int) -> List[List[Any]]:
-    """
-    Split list into chunks of specified size.
-    
-    Args:
-        lst: Input list
-        chunk_size: Size of each chunk
-    
-    Returns:
-        List of chunks
-    
-    Time Complexity: O(n)
-    Space Complexity: O(n)
-    
-    Examples:
-        >>> chunk_list([1, 2, 3, 4, 5, 6, 7], 3)
-        [[1, 2, 3], [4, 5, 6], [7]]
-    """
-    return [lst[i:i + chunk_size] for i in range(0, len(lst), chunk_size)]
-
-
-def rotate_list(lst: List[Any], k: int) -> List[Any]:
-    """
-    Rotate list by k positions.
-    
-    Args:
-        lst: Input list
-        k: Number of positions to rotate
-    
-    Returns:
-        Rotated list
-    
-    Time Complexity: O(n)
-    Space Complexity: O(n)
-    
-    Examples:
-        >>> rotate_list([1, 2, 3, 4, 5], 2)
-        [4, 5, 1, 2, 3]
-    """
-    k = k % len(lst) if lst else 0
-    return lst[-k:] + lst[:-k] if k else lst
-
-
-def is_palindrome(s: str) -> bool:
-    """
-    Check if string is palindrome (one-liner).
-    
-    Args:
-        s: Input string
-    
-    Returns:
-        True if palindrome
-    
-    Time Complexity: O(n)
-    Space Complexity: O(n)
-    
-    Examples:
-        >>> is_palindrome("racecar")
-        True
-        >>> is_palindrome("hello")
-        False
-    """
-    return (cleaned := ''.join(c.lower() for c in s if c.isalnum())) == cleaned[::-1]
-
-
-def word_frequency(text: str) -> Dict[str, int]:
-    """
-    Count word frequency in text.
-    
-    Args:
-        text: Input text
-    
-    Returns:
-        Dictionary of word frequencies
-    
-    Time Complexity: O(n)
-    Space Complexity: O(n)
-    
-    Examples:
-        >>> word_frequency("hello world hello")
-        {'hello': 2, 'world': 1}
-    """
-    return dict(Counter(text.lower().split()))
-
-
-def fibonacci_generator(n: int) -> List[int]:
-    """
-    Generate first n Fibonacci numbers using list comprehension.
-    
-    Args:
-        n: Number of Fibonacci numbers
-    
-    Returns:
-        List of Fibonacci numbers
-    
-    Time Complexity: O(n^2) - Not optimal but demonstrates one-liner
-    Space Complexity: O(n)
-    
-    Examples:
-        >>> fibonacci_generator(7)
-        [0, 1, 1, 2, 3, 5, 8]
-    """
-    return [0, 1] + [sum((fib := [0, 1] + [sum(fib[-2:]) for _ in range(i-2)])[-2:]) 
-                     for i in range(2, n)] if n > 2 else [0, 1][:n]
+# ============================================================================
+# TEST CODE FORMAT
+# ============================================================================
+# Test code is added in the main() function following this format:
+#
+# # Problem X Test Code:
+# # print(function_name(test_params))
+# # Output: expected_output
+#
+# ============================================================================
 
 
 def main():
-    """Demonstrate all one-liner solutions."""
-    print("=" * 60)
-    print("Basic Python - One-Liners and Pythonic Solutions")
-    print("=" * 60)
+    """
+    Demonstration of Python one-liners.
     
-    # Test each function
-    print("\n1. Find Duplicates:")
-    print(find_duplicates([1, 2, 3, 2, 4, 3, 5]))
+    Uncomment test sections below to validate specific problems.
+    """
     
-    print("\n2. Flatten List:")
-    print(flatten_list([[1, 2], [3, 4], [5]]))
+    # Problem 1 Test Code:
+    # print(list_to_dict(['a', 'b', 'c']))
+    # Output: {0: 'a', 1: 'b', 2: 'c'}
     
-    print("\n3. Remove Duplicates (Preserve Order):")
-    print(remove_duplicates_preserve_order([1, 2, 3, 2, 4, 1]))
+    # Problem 2 Test Code:
+    # print(merge_dicts({'a': 1}, {'b': 2}, {'a': 3}))
+    # Output: {'a': 3, 'b': 2}
     
-    print("\n4. Transpose Matrix:")
-    print(transpose_matrix([[1, 2, 3], [4, 5, 6]]))
+    # Problem 3 Test Code:
+    # print(camel_to_snake('camelCaseString'))
+    # Output: camel_case_string
     
-    print("\n5. Most Common Element:")
-    print(most_common_element([1, 2, 3, 2, 2, 4]))
+    # Problem 4 Test Code:
+    # print(rotate_list([1, 2, 3, 4, 5], 2))
+    # Output: [4, 5, 1, 2, 3]
     
-    print("\n6. Chunk List:")
-    print(chunk_list([1, 2, 3, 4, 5, 6, 7], 3))
+    # Problem 5 Test Code:
+    # print(validate_credit_card('4532015112830366'))
+    # Output: True
     
-    print("\n7. Rotate List:")
-    print(rotate_list([1, 2, 3, 4, 5], 2))
-    
-    print("\n8. Is Palindrome:")
-    print(is_palindrome("A man a plan a canal Panama"))
-    
-    print("\n9. Word Frequency:")
-    print(word_frequency("hello world hello python world"))
-    
-    print("\n" + "=" * 60)
+    print("\n" + "=" * 80)
+    print("Uncomment test sections above to validate specific problems.")
+    print("=" * 80)
 
 
 if __name__ == "__main__":
     main()
+
+
+# ============================================================================
+# TEMPLATE GUIDELINES FOR BASIC PYTHON ONE-LINERS
+# ============================================================================
+#
+# 1. FILE HEADER:
+#    - File-level docstring with description
+#    - Author and repository information
+#    - Total problem count (update when adding problems)
+#
+# 2. IMPORTS:
+#    - Import only what's needed for the one-liners
+#    - Common imports: typing, collections, itertools, functools, re, math, etc.
+#
+# 3. PROBLEM FORMAT:
+#    - Problem number: Sequential, starting from 1
+#    - Title: UPPERCASE with underscores for spaces
+#    - Description: One sentence describing what the function does
+#    - Function: Descriptive name, type hints, one-liner return
+#
+# 4. ONE-LINER REQUIREMENTS:
+#    - Must be a true one-liner (single return statement)
+#    - Can use comprehensions, lambda, ternary operators, etc.
+#    - Should be Pythonic and readable
+#    - Include type hints for parameters and return type
+#
+# 5. TEST CODE:
+#    - Add test code in main() function
+#    - Comment out by default
+#    - Include expected output in comment
+#    - Use descriptive variable names
+#
+# 6. CATEGORIES:
+#    - Data Structure Operations
+#    - Text Processing
+#    - List Advanced Operations
+#    - Data Validation
+#    - Mathematical Operations
+#    - String Operations
+#    - Date & Time Operations
+#    - Array & List Operations
+#    - And more...
+#
+# 7. NAMING CONVENTIONS:
+#    - Function names: snake_case
+#    - Problem titles: UPPERCASE_WITH_UNDERSCORES
+#    - Variables: snake_case
+#
+# 8. TYPE HINTS:
+#    - Always include type hints for parameters
+#    - Always include return type annotation
+#    - Use typing module types: List, Dict, Any, Tuple, Optional, Set, Callable
+#
+# ============================================================================

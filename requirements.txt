@@ -77,8 +77,9 @@ langsmith>=0.0.60
 # ============================================================================
 # Notes
 # ============================================================================
-# 1. Problem-specific dependencies should be in problem's requirements.txt
-# 2. Keep this file minimal - only shared dependencies
-# 3. Pin versions for reproducibility
-# 4. Update regularly but test thoroughly
-# 5. Document any version-specific requirements
+# 1. This file is auto-generated from requirements.in
+# 2. To update: Run `./scripts/generate_requirements.sh`
+# 3. All dependencies are managed centrally via requirements.in
+# 4. Do NOT create requirements.txt files in problem directories
+# 5. All problems use the root virtual environment
+# 6. Python 3.12 is required for this repository

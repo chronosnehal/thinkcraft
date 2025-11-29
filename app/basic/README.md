@@ -8,21 +8,27 @@ This directory contains Python one-liner solutions for common programming tasks.
 
 ### `python_one_liners.py`
 
-A comprehensive collection of **264 Python one-liner problems and solutions** migrated from the Python One-Liners reference document.
+A comprehensive collection of **289 Python one-liner problems and solutions** covering common programming tasks with elegant, Pythonic solutions.
 
 **File Structure:**
-- **Problems Section** (Lines 1-1499): Clean problem definitions with number, title, description, and function
-- **Main Method** (Lines 1501-2894): All test code organized by problem number, ready to uncomment and test
+- **Problems Section** (Lines 1-1630): Clean problem definitions with number, title, description, and function
+- **Main Method** (Lines 1632+): All test code organized by problem number, ready to uncomment and test
 
 **Content Categories:**
+- Data Structure Operations - Dictionary manipulations, grouping, flattening, merging
+- Text Processing - Case conversion, extraction, formatting, parsing
+- List Advanced Operations - Rotation, chunking, partitioning, sliding windows
+- Data Validation - Credit cards (Luhn), URLs, JSON parsing, date formats
 - Temperature & Unit Conversions
 - String Operations
 - Date & Time Calculations
 - Array & List Manipulations
 - Mathematical Operations
-- Data Structure Operations
 - Validation & Checking
 - Random Generation
+- Geometry & Shapes
+- Pattern & Formatting
+- Boolean & Validation
 - And many more...
 
 ## Usage
@@ -48,7 +54,7 @@ def function_name(params):
 ```
 
 **To use a one-liner:**
-1. Browse through the file to find the problem you need (problems are numbered 1-264)
+1. Browse through the file to find the problem you need (problems are numbered 1-289)
 2. Copy the function definition
 3. Adapt it to your specific use case
 4. Optionally, uncomment the corresponding test code in `main()` to see it in action
@@ -58,7 +64,7 @@ def function_name(params):
 All test code is centralized in the `main()` function, organized by problem number. To test a specific problem:
 
 1. Open `python_one_liners.py`
-2. Navigate to the `main()` function (around line 1501)
+2. Navigate to the `main()` function (around line 1632)
 3. Find the test section for your problem (e.g., `# Problem 1 Test Code:`)
 4. Uncomment the test code
 5. Run the file: `python app/basic/python_one_liners.py`
@@ -75,7 +81,7 @@ All test code is centralized in the `main()` function, organized by problem numb
 
 ## Problem Catalog with Solution Links
 
-**Complete catalog of all 264 problems organized by category.**
+**Complete catalog of all 289 problems organized by category.**
 
 ### Temperature & Unit Conversions (34 problems)
 
@@ -358,6 +364,51 @@ All test code is centralized in the `main()` function, organized by problem numb
 | 263 | Calculate The Area Of A Kite | [`area_of_kite`](python_one_liners.py#L1492) | [Line 1492](python_one_liners.py#L1492) |
 | 264 | Calculate The Area Of A Sector | [`sector_area`](python_one_liners.py#L1497) | [Line 1497](python_one_liners.py#L1497) |
 
+### Data Structure Operations (7 problems)
+
+| # | Problem | Function | Line Link |
+|---|---------|----------|-----------|
+| 265 | Convert List To Dictionary With Index As Key | [`list_to_dict`](python_one_liners.py#L1504) | [Line 1504](python_one_liners.py#L1504) |
+| 266 | Merge Multiple Dictionaries | [`merge_dicts`](python_one_liners.py#L1509) | [Line 1509](python_one_liners.py#L1509) |
+| 267 | Access Nested Dictionary Value Safely | [`safe_nested_get`](python_one_liners.py#L1514) | [Line 1514](python_one_liners.py#L1514) |
+| 268 | Flatten Dictionary With Nested Keys | [`flatten_dict`](python_one_liners.py#L1519) | [Line 1519](python_one_liners.py#L1519) |
+| 269 | Group List Items By A Key Function | [`group_by`](python_one_liners.py#L1524) | [Line 1524](python_one_liners.py#L1524) |
+| 270 | Invert Dictionary (Swap Keys And Values) | [`invert_dict`](python_one_liners.py#L1529) | [Line 1529](python_one_liners.py#L1529) |
+| 271 | Filter Dictionary By Value Condition | [`filter_dict_by_value`](python_one_liners.py#L1534) | [Line 1534](python_one_liners.py#L1534) |
+
+### Text Processing (6 problems)
+
+| # | Problem | Function | Line Link |
+|---|---------|----------|-----------|
+| 272 | Convert Camelcase To Snake_Case | [`camel_to_snake`](python_one_liners.py#L1539) | [Line 1539](python_one_liners.py#L1539) |
+| 273 | Convert Snake_Case To Camelcase | [`snake_to_camel`](python_one_liners.py#L1544) | [Line 1544](python_one_liners.py#L1544) |
+| 274 | Extract All Numbers From String | [`extract_numbers`](python_one_liners.py#L1549) | [Line 1549](python_one_liners.py#L1549) |
+| 275 | Extract All Email Addresses From Text | [`extract_emails`](python_one_liners.py#L1554) | [Line 1554](python_one_liners.py#L1554) |
+| 276 | Format Number With Thousand Separators | [`format_number`](python_one_liners.py#L1559) | [Line 1559](python_one_liners.py#L1559) |
+| 277 | Split String By Multiple Delimiters | [`split_multiple`](python_one_liners.py#L1564) | [Line 1564](python_one_liners.py#L1564) |
+
+### List Advanced Operations (7 problems)
+
+| # | Problem | Function | Line Link |
+|---|---------|----------|-----------|
+| 278 | Rotate List By N Positions | [`rotate_list`](python_one_liners.py#L1569) | [Line 1569](python_one_liners.py#L1569) |
+| 279 | Find All Indices Of An Element | [`find_all_indices`](python_one_liners.py#L1574) | [Line 1574](python_one_liners.py#L1574) |
+| 280 | Partition List By Condition | [`partition_list`](python_one_liners.py#L1579) | [Line 1579](python_one_liners.py#L1579) |
+| 281 | Chunk List Into Groups Of N | [`chunk_list`](python_one_liners.py#L1584) | [Line 1584](python_one_liners.py#L1584) |
+| 282 | Interleave Two Lists | [`interleave_lists`](python_one_liners.py#L1589) | [Line 1589](python_one_liners.py#L1589) |
+| 283 | Remove Duplicates While Preserving Order | [`remove_duplicates_ordered`](python_one_liners.py#L1594) | [Line 1594](python_one_liners.py#L1594) |
+| 284 | Sliding Window Of Size N | [`sliding_window`](python_one_liners.py#L1599) | [Line 1599](python_one_liners.py#L1599) |
+
+### Data Validation (5 problems)
+
+| # | Problem | Function | Line Link |
+|---|---------|----------|-----------|
+| 285 | Validate Credit Card (Luhn Algorithm) | [`validate_credit_card`](python_one_liners.py#L1604) | [Line 1604](python_one_liners.py#L1604) |
+| 286 | Parse Date From Multiple Formats | [`parse_date_multiple_formats`](python_one_liners.py#L1610) | [Line 1610](python_one_liners.py#L1610) |
+| 287 | Extract Json From String | [`extract_json_from_string`](python_one_liners.py#L1615) | [Line 1615](python_one_liners.py#L1615) |
+| 288 | Validate Url Components | [`validate_url`](python_one_liners.py#L1620) | [Line 1620](python_one_liners.py#L1620) |
+| 289 | Extract Domain From Url | [`extract_domain`](python_one_liners.py#L1629) | [Line 1629](python_one_liners.py#L1629) |
+
 ### Other (28 problems)
 
 | # | Problem | Function | Line Link |
@@ -395,7 +446,7 @@ All test code is centralized in the `main()` function, organized by problem numb
 
 ## Complete Problem List
 
-The file contains **264 problems** total. For the complete list, browse the [`python_one_liners.py`](python_one_liners.py) file directly. Problems are numbered sequentially from 1 to 264.
+The file contains **289 problems** total. For the complete list, browse the [`python_one_liners.py`](python_one_liners.py) file directly. Problems are numbered sequentially from 1 to 289.
 
 ### Quick Navigation
 
@@ -404,6 +455,7 @@ The file contains **264 problems** total. For the complete list, browse the [`py
 - **Problems 101-150**: Advanced string manipulations, date operations
 - **Problems 151-200**: Complex algorithms, pattern matching, data transformations
 - **Problems 201-264**: Advanced operations, optimizations, edge cases
+- **Problems 265-289**: Data structures, text processing, list operations, data validation
 
 ---
 
@@ -426,39 +478,55 @@ def rgb_to_hex(r, g, b):
 def character_frequency(string):
     return {char: string.count(char) for char in set(string)}
 
-# Problem 4: TRANSPOSE OF A MATRIX
-# The transpose_matrix function computes the transpose of a given matrix.
-def transpose_matrix(matrix):
-    return [list(row) for row in zip(*matrix)]
+# Problem 265: CONVERT LIST TO DICTIONARY WITH INDEX AS KEY
+# The list_to_dict function converts a list to a dictionary where the index is the key and the list element is the value.
+def list_to_dict(lst: List[Any]) -> Dict[int, Any]:
+    return {i: val for i, val in enumerate(lst)}
+
+# Problem 272: CONVERT CAMELCASE TO SNAKE_CASE
+# The camel_to_snake function converts a camelCase string to snake_case.
+def camel_to_snake(s: str) -> str:
+    return re.sub(r'(?<!^)(?=[A-Z])', '_', s).lower()
+
+# Problem 285: VALIDATE CREDIT CARD (LUHN ALGORITHM)
+# The validate_credit_card function validates a credit card number using the Luhn algorithm.
+def validate_credit_card(card_number: str) -> bool:
+    digits = [int(d) for d in card_number.replace(' ', '')]
+    return sum(digits[-1::-2] + [sum(divmod(d * 2, 10)) for d in digits[-2::-2]]) % 10 == 0 if len(digits) > 0 else False
 ```
 
-**To test these examples**, uncomment the corresponding test code in the `main()` function (starting around line 1501).
+**To test these examples**, uncomment the corresponding test code in the `main()` function (starting around line 1632).
 
 ## Problem Categories
 
-The 264 problems cover a wide range of topics:
+The 289 problems cover a wide range of topics:
 
-1. **String Manipulation** - Reversing, capitalizing, character operations
-2. **Mathematical Operations** - Fibonacci, prime numbers, factorials
-3. **Date & Time** - Date validation, day calculations, formatting
-4. **Array Operations** - Sorting, filtering, transformations
-5. **Data Conversions** - Temperature, color codes, units
-6. **Validation** - Email, phone numbers, dates, passwords
-7. **Random Generation** - Strings, numbers, colors
-8. **Geometry** - Area, perimeter, volume calculations
-9. **Data Structures** - Matrix operations, dictionary manipulations
-10. **Functional Programming** - Map, filter, reduce patterns
+1. **Data Structure Operations** - Dictionary manipulations, grouping, flattening, merging
+2. **Text Processing** - Case conversion, extraction, formatting, parsing
+3. **List Advanced Operations** - Rotation, chunking, partitioning, sliding windows
+4. **Data Validation** - Credit cards (Luhn), URLs, JSON parsing, date formats
+5. **String Manipulation** - Reversing, capitalizing, character operations
+6. **Mathematical Operations** - Fibonacci, prime numbers, factorials
+7. **Date & Time** - Date validation, day calculations, formatting
+8. **Array Operations** - Sorting, filtering, transformations
+9. **Data Conversions** - Temperature, color codes, units
+10. **Validation** - Email, phone numbers, dates, passwords
+11. **Random Generation** - Strings, numbers, colors
+12. **Geometry** - Area, perimeter, volume calculations
+13. **Data Structures** - Matrix operations, dictionary manipulations
+14. **Functional Programming** - Map, filter, reduce patterns
 
 ## File Organization
 
 The file is organized into two main sections:
 
-1. **Problem Definitions** (Lines 1-1499)
+1. **Problem Definitions** (Lines 1-1630)
    - Clean, simple format: Problem number, title, description, function
    - Easy to browse and understand
    - No test code cluttering the definitions
+   - Later problems (265+) include type hints for better clarity
 
-2. **Test Suite** (Lines 1501-2894)
+2. **Test Suite** (Lines 1632+)
    - All test code centralized in `main()` function
    - Organized by problem number
    - Easy to uncomment and test specific problems
@@ -480,21 +548,30 @@ These problems were migrated from the `Python_One_Liners.docx` reference documen
 
 To add new one-liners:
 
-1. Follow the existing format:
+1. Follow the format with type hints:
    ```python
-   # Problem X: PROBLEM TITLE
+   # Problem X: PROBLEM TITLE IN UPPERCASE
    # The function_name function description of what it does.
-   def function_name(params):
-       return solution
+   def function_name(params: Type) -> ReturnType:
+       return one_liner_solution
    ```
+
 2. Add corresponding test code in the `main()` function:
    ```python
    # Problem X Test Code:
    # print(function_name(test_params))
    # Output: expected_output
    ```
-3. Ensure the problem number is sequential (next available number)
-4. Group similar problems together when possible
+
+3. Requirements:
+   - Problem number must be sequential (next available number, currently 290)
+   - Must be a true one-liner (single return statement)
+   - Include type hints for parameters and return type
+   - Use descriptive function names (snake_case)
+   - Group similar problems together when possible
+   - Update the file header with new total count
+
+4. See `/docs/templates/basic_python_template.py` for the complete template format
 
 ## Notes
 
