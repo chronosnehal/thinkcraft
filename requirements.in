@@ -5,7 +5,7 @@
 # Core LLM Provider SDKs (Required)
 # ============================================================================
 openai>=1.6.0              # OpenAI GPT models
-anthropic>=0.8.0           # Anthropic Claude
+anthropic>=0.75.0           # Anthropic Claude
 google-generativeai>=0.3.2 # Google Gemini
 requests>=2.31.0           # HTTP client for OpenRouter and custom APIs
 
